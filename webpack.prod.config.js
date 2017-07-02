@@ -15,8 +15,8 @@ module.exports = {
         vendor: Object.keys(pkg.dependencies)
     },
     output: {
-        path: path.join(__dirname, 'public','js'),
-        filename: '[name].[chunkhash:8].js'
+        path: path.join(__dirname, 'public'),
+        filename: './js/[name].[chunkhash:8].js'
     },
     resolve: {
         extensions: ['.js', '.jsx']
@@ -43,11 +43,11 @@ module.exports = {
             },
             {
                 test: /\.(png|gif|jpg|jpeg|bmp)$/i,
-                loader: 'url-loader?limit=5000&name=img/[name].[chunkhash:8].[ext]'
+                loader: 'url-loader?limit=5000&name=./img/[name].[chunkhash:8].[ext]'
             },
             {
                 test: /\.(png|woff|woff2|svg|ttf|eot)($|\?)/i,
-                loader: 'url-loader?limit=5000&name=fonts/[name].[chunkhash:8].[ext]'
+                loader: 'url-loader?limit=5000&name=./fonts/[name].[chunkhash:8].[ext]'
             }
         ]
     },
@@ -65,28 +65,21 @@ module.exports = {
             template: __dirname + '/src/index.html'
         }),
 
-        new webpack.DefinePlugin({
-            'process.env': {
-                'NODE_EVN': JSON.stringify(process.env.NODE_EVN)
-            }
-        }),
-
         new webpack.optimize.OccurrenceOrderPlugin(),
 
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        }),
+        new webpack.optimize.UglifyJsPlugin(),
 
-        new extractTextPlugin('/css/[name].[chunkhash:8].css'),
+        new extractTextPlugin('./css/[name].[chunkhash:8].css'),
 
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
-            filename: '/js/[name].[chunkhash:8].js'
+            filename: './js/[name].[chunkhash:8].js'
         }),
 
         new webpack.DefinePlugin({
+            "process.env": {
+                NODE_ENV: JSON.stringify("production")
+            },
             __DEV__:JSON.stringify(JSON.parse((process.env.NODE_ENV==='dev')||'false'))
         })
     ],
