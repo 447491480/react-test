@@ -3,15 +3,9 @@ import {render} from 'react-dom'
 
 import './static/css/common.less'
 
-class Hello extends React.Component {
-    render() {
-        return (
-            <p>Hello React 123</p>
-        )
-    }
-}
+import AppRouteMap from './router/AppRouteMap'
 
 render(
-    <Hello/>,
+    <AppRouteMap/>,
     document.getElementById('root')
 );

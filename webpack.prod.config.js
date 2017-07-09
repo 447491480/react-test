@@ -28,7 +28,15 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 query: {
-                    presets:['es2015','react']
+                    "presets": [
+                        ["es2015", {"modules": false}], "react", "stage-2"],
+                    "plugins": [
+                        ["transform-runtime", {"helpers": false, "polyfill": false, "regenerator": true, "moduleName": "babel-runtime"}],
+                        "transform-decorators-legacy",
+                        "transform-async-to-generator",
+                        "transform-do-expressions",
+                        "syntax-do-expressions"
+                    ]
                 }
             },
             {
