@@ -3,6 +3,7 @@ import React from 'react'
 import {
     HashRouter as Router,
     Route,
+    Switch
 } from 'react-router-dom'
 
 import createHistory from 'history/createHashHistory'
@@ -18,20 +19,14 @@ export default class AppRouteMap extends BaseComponent {
     }
 
     render() {
-        return (
+        return ( 
             <Router history={createHistory()}>
-                <Route render={
-                    ({location}) => {
-                        return (
-                            <div key={location.pathname}>
-                                <Route exact path="/" component={Home}/>
-                                <Route path='/list' component={List}/>
-                                <Route path='/detail/:id' component={Detail}/>
-                                <Route path='*' component={NotFound}/>
-                            </div>
-                        )
-                    }
-                }/>
+                <Switch>
+                    <Route exact path="/" component={Home}/>
+                    <Route path='/list' component={List}/>
+                    <Route path='/detail/:id' component={Detail}/>
+                    <Route path='*' component={NotFound}/>
+                </Switch>
             </Router>
         )
     }

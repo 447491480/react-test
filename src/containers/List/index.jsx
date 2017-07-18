@@ -23,7 +23,7 @@ class List extends BaseComponent {
     }
 
     clickHandler(value) {
-        HashRouter.push('/detail/'+value)
+        this.context.history.push('/detail/'+value)
     }
 }
 
