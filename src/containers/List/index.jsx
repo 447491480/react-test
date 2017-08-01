@@ -9,7 +9,7 @@ class List extends BaseComponent {
     }
 
     render() {
-        const arr = [1,2,3];
+        const arr = [1,2,3,4];
 
         return (
             <ul>
