@@ -31,7 +31,12 @@ module.exports = {
                     "presets": [
                         ["es2015", {"modules": false}], "react", "stage-2"],
                     "plugins": [
-                        ["transform-runtime", {"helpers": false, "polyfill": false, "regenerator": true, "moduleName": "babel-runtime"}],
+                        ["transform-runtime", {
+                            "helpers": false,
+                            "polyfill": false,
+                            "regenerator": true,
+                            "moduleName": "babel-runtime"
+                        }],
                         "transform-decorators-legacy",
                         "transform-async-to-generator",
                         "transform-do-expressions",
@@ -42,12 +47,15 @@ module.exports = {
             {
                 test: /\.less$/,
                 exclude: /node_modules/,
-                loader: extractTextPlugin.extract({fallback:'style-loader', use:'css-loader!postcss-loader!less-loader'}),
+                loader: extractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: 'css-loader!postcss-loader!less-loader'
+                }),
             },
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
-                loader: extractTextPlugin.extract({fallback:'style-loader', use:'css-loader!postcss-loader'}),
+                loader: extractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader!postcss-loader'}),
             },
             {
                 test: /\.(png|gif|jpg|jpeg|bmp)$/i,
@@ -62,8 +70,8 @@ module.exports = {
 
     plugins: [
         new webpack.LoaderOptionsPlugin({
-            postcss () {
-                return [ require('autoprefixer') ];
+            postcss() {
+                return [require('autoprefixer')];
             }
         }),
 
@@ -72,6 +80,8 @@ module.exports = {
         new htmlWebpackPlugin({
             template: __dirname + '/src/index.html'
         }),
+
+        new webpack.optimize.ModuleConcatenationPlugin(),
 
         new webpack.optimize.OccurrenceOrderPlugin(),
 
@@ -88,7 +98,7 @@ module.exports = {
             "process.env": {
                 NODE_ENV: JSON.stringify("production")
             },
-            __DEV__:JSON.stringify(JSON.parse((process.env.NODE_ENV==='dev')||'false'))
+            __DEV__: JSON.stringify(JSON.parse((process.env.NODE_ENV === 'dev') || 'false'))
         })
     ],
 

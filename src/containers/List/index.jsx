@@ -1,7 +1,6 @@
 import BaseComponent from '../../common/BaseComponent'
 import React from 'react'
 
-import {HashRouter} from 'react-router-dom'
 
 class List extends BaseComponent {
     constructor(props,context) {
@@ -9,7 +8,7 @@ class List extends BaseComponent {
     }
 
     render() {
-        const arr = [1,2,3,4];
+        const arr = [1,2,3,4,5];
 
         return (
             <ul>
@@ -23,7 +22,7 @@ class List extends BaseComponent {
     }
 
     clickHandler(value) {
-        this.context.history.push('/detail/'+value)
+         this.props.history.push('/detail/'+value)
     }
 }
 
